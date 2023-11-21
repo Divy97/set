@@ -1,0 +1,98 @@
+<!-- Design a webpage for an online bus reservation system using HTML and JavaScript as follows:
+The index page must have a bus image which should be a hyperlink to a HTML form for reservation.
+The HTML for must get from and to date, boarding and destination, number of tickets and name of the reserver with a button.
+On clicking the button if the from date is greater than the to date alert an error message using JavaScript. All the fields must be 
+mandatorily filled.
+In the index page provide a button which on clicking will change the bus image to car image using jquery.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Reservation</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <button id="changeImageBtn">Change image</button>
+    <a href="#reservationForm"><img id="busImage" src="img1.png" alt="Insert 1" style="height: 300px; width: 300px;" />
+    </a>
+
+    <div style="height: 500px;"></div>
+
+    <h1>Reservation Form</h1>
+    <form id="reservationForm">
+        <label>FROM Date</label>
+        <br />
+        <br />
+        <input type="date" name="" id="fromDate">
+        <br />
+        <br />
+        <label>To Date</label>
+        <br />
+        <br />
+        <input type="date" name="" id="toDate">
+        <br />
+        <br />
+        <label>Boarding Station</label>
+        <br />
+        <br />
+        <input type="text" placeholder="Boarding Station" id="boarding">
+        <br />
+        <br />
+        <label>Destination</label>
+        <br />
+        <br />
+        <input type="text" placeholder="Destination" id="destination">
+        <br />
+        <br />
+        <label>Number of tickets</label>
+        <br />
+        <br />
+        <input type="number" placeholder="Number of tickets" id="numTickets">
+        <br />
+        <br />
+        <label>Reserver Name</label>
+        <br />
+        <br />
+        <input type="text" placeholder="Reserver Name" id="reserverName">
+        <br />
+        <br />
+        <input type="submit" id="btn" value="Submit">
+    </form>
+</body>
+
+<script>
+    $(document).ready(function () {
+        $("#changeImageBtn").click(function () {
+            $("#busImage").attr("src", "img2.png");
+        });
+
+        document.getElementById("btn").addEventListener('click', () => {
+            let fromDate = document.getElementById('fromDate').value;
+            let toDate = document.getElementById('toDate').value;
+            let boarding = document.getElementById("boarding").value;
+            let destination = document.getElementById("destination").value;
+            let numTickets = document.getElementById("numTickets").value;
+            let reserverName = document.getElementById("reserverName").value;
+
+            if (fromDate === '' || toDate === '' || boarding === '' || destination === '' || numTickets === '' || reserverName === '') {
+                alert("All fields are mandatory. Please fill them.");
+                return false;
+            }
+
+            if (new Date(fromDate) > new Date(toDate)) {
+                console.log('hey');
+                alert("From date cannot be greater than To date. Please correct the dates.");
+                return false;
+            } else {
+                alert("Submitted successfully")
+            }
+        });
+    });
+</script>
+
+</html>
